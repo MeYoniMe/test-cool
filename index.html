@@ -23,7 +23,7 @@
             color: var(--text-color);
             font-family: var(--font-body);
             min-height: 100vh; display: flex; flex-direction: column;
-            background-image: linear-gradient(rgba(2,6,12,0.9), rgba(2,6,12,0.95)), url('https://images.unsplash.com/photo-1518655945958-c5953672237d?q=80&w=1080');
+            background-image: linear-gradient(rgba(2,6,12,0.92), rgba(2,6,12,0.95)), url('https://images.unsplash.com/photo-1518655945958-c5953672237d?q=80&w=1080');
             background-size: cover; background-position: center; background-attachment: fixed;
         }
         
@@ -76,9 +76,13 @@
 
         .reset-btn { background: transparent; border: 1px solid var(--accent-ice-blue); color: var(--accent-ice-blue); padding: 12px; width: 100%; margin-top: 10px; font-family: var(--font-title); cursor: pointer; text-transform: uppercase; }
         
+        .quote-box {
+            text-align: center; font-style: italic; color: #888; font-size: 14px; margin: 30px 0 10px 0; padding: 0 20px;
+        }
+
         /* FOOTER DISCRET */
         .footer { 
-            text-align: center; font-size: 10px; color: #555; margin-top: 30px; 
+            text-align: center; font-size: 10px; color: #555; margin-top: 20px; 
             border-top: 1px solid #222; padding-top: 15px; line-height: 1.4;
         }
     </style>
@@ -92,7 +96,7 @@
             <div class="cyber-box">
                 <label>1. QUEL EFFORT VENEZ-VOUS DE TERMINER ?</label>
                 <select id="effort">
-                    <option value="muscle">Musculation / Force (Prise de masse)</option>
+                    <option value="muscle">Musculation / Force (Hypertrophie)</option>
                     <option value="cardio">Cardio / Match / CrossFit (Endurance)</option>
                     <option value="repos">Aucun (Jour de repos)</option>
                 </select>
@@ -143,10 +147,14 @@
 
             <button class="reset-btn" onclick="reset()">🔄 Nouveau Test</button>
         </div>
+        
+        <div class="quote-box">
+            "Le froid est le glaçage sur le gâteau. Assurez-vous d'abord que le gâteau (Sommeil + Nutrition) est solide."
+        </div>
     </div>
     
     <div class="footer">
-        AVERTISSEMENT : Cette application fournit des recommandations basées sur la littérature scientifique sportive générale (2024). 
+        AVERTISSEMENT : Cette application fournit des recommandations basées sur la littérature scientifique sportive (Données 2024/2025). 
         <br><strong>CECI N'EST PAS UN DISPOSITIF MÉDICAL.</strong><br>
         L'utilisation du froid comporte des risques. Consultez impérativement un médecin avant toute pratique, surtout en cas d'antécédents cardiovasculaires. L'auteur décline toute responsabilité en cas d'incident.
         <br><br>BY B.Y - SCIENCE APPLIED
@@ -188,7 +196,7 @@
                 desc.innerHTML = "Le froid est strictement déconseillé après cette séance.";
                 params.style.display = "none";
                 expertBlock.style.borderLeftColor = "var(--accent-red)";
-                expertContent.innerHTML = "<strong>EXPLICATION PHYSIOLOGIQUE :</strong><br>Vous venez de stimuler l'hypertrophie. Le froid bloquerait les signaux anaboliques (voie mTOR) et réduirait vos gains de force et de volume (Étude: Roberts et al., 2015).";
+                expertContent.innerHTML = "<strong>EXPLICATION PHYSIOLOGIQUE :</strong><br>Vous venez de stimuler l'hypertrophie. Le froid bloquerait les signaux anaboliques (voie mTOR) et réduirait vos gains de force et de volume (Étude: Roberts et al., 2015). <br><span class='warning-text'>👉 Attendez au moins 6h à 8h avant toute exposition au froid.</span>";
             } 
             else {
                 params.style.display = "flex";
@@ -198,7 +206,7 @@
                     icon.innerHTML = "✅";
                     titre.innerHTML = "PROTOCOLE RÉCUP'";
                     titre.style.color = "var(--accent-green)";
-                    desc.innerHTML = "Protocole optimal pour l'analgésie et le drainage.";
+                    desc.innerHTML = "Protocole optimal pour l'analgésie et le drainage lymphatique.";
                     
                     valTemp.innerHTML = "10°C - 15°C";
                     valDuree.innerHTML = "11 - 15 MIN";
@@ -213,10 +221,10 @@
                     desc.innerHTML = "Stimulation du système nerveux sympathique (Vigilance).";
                     
                     valTemp.innerHTML = "< 10°C";
-                    valDuree.innerHTML = "2 - 5 MIN";
+                    valDuree.innerHTML = "1 - 3 MIN"; // CORRECTION SÉCURITÉ
                     
                     expertBlock.style.borderLeftColor = "var(--accent-ice-blue)";
-                    expertContent.innerHTML = `<strong>POURQUOI :</strong><br>Nécessite un choc thermique intense pour déclencher le pic de noradrénaline. Durée courte impérative pour éviter l'hypothermie.`;
+                    expertContent.innerHTML = `<strong>POURQUOI :</strong><br>Nécessite un choc thermique intense pour déclencher le pic de noradrénaline. <span class="warning-text">⚠️ Durée courte impérative pour éviter l'hypothermie.</span>`;
                 }
             }
 
@@ -227,7 +235,7 @@
         function reset() {
             document.getElementById('resultat').style.display = 'none';
             document.getElementById('quiz').style.display = 'block';
-             // Reset crucial pour la sécurité : remettre le risque par défaut
+             // Reset crucial pour la sécurité
             document.getElementById('sante').value = "risque";
             document.getElementById('effort').selectedIndex = 0;
             document.getElementById('but').selectedIndex = 0;
